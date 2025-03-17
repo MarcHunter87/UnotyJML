@@ -18,6 +18,9 @@ public class SpawnManager : MonoBehaviour
     public GameObject posicionPrimeraCartaTablero;
     public GameObject ultimaCartaUsada = null;
 
+    public GameObject basePlayerCards;
+    public GameObject baseSpawn;
+
     private List<GameObject> mazo = new List<GameObject>();
 
     void Awake()
@@ -27,6 +30,13 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
+        #if UNITY_ANDROID || UNITY_IOS
+        
+        basePlayerCards.transform.position = new Vector3(0f, 0.05f, 0f);
+        baseSpawn.transform.position = new Vector3(6.77f, 0f, 0.1f);
+
+        #endif
+
         StartSpawn();
     }
 

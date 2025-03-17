@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance { get; private set; }
     private InputSystem_Actions inputActions;
+    private bool animacionesHabilitadas = true;
 
     public GameObject[] playerCardsButtons;
     public GameObject[] playerCards;
@@ -24,6 +25,10 @@ public class PlayerManager : MonoBehaviour
     {
         Instance = this;
         inputActions = new InputSystem_Actions();
+        
+        #if UNITY_ANDROID || UNITY_IOS
+            animacionesHabilitadas = false;
+        #endif
     }
 
     void Start()
@@ -126,6 +131,11 @@ public class PlayerManager : MonoBehaviour
     public void SeleccionarCarta(int index)
     {
         var card = playerCards[index];
+        if (!animacionesHabilitadas)
+        {
+            return;
+        }
+
         var posicionInicial = card.transform.position;
         var posicionFinal = new Vector3(card.transform.position.x, posicionCartaSeleccionada, -1f);
         StartCoroutine(MoverCartaSeleccionadaDeseleccionada(card, posicionInicial, posicionFinal));
@@ -135,6 +145,11 @@ public class PlayerManager : MonoBehaviour
     {
         var card = playerCards[index];
         var boton = playerCardsButtons[index];
+        if (!animacionesHabilitadas)
+        {
+            return;
+        }
+
         var posicionInicial = card.transform.position;
         var posicionFinal = new Vector3(boton.transform.position.x, boton.transform.position.y, boton.transform.position.z);
         StartCoroutine(MoverCartaSeleccionadaDeseleccionada(card, posicionInicial, posicionFinal));

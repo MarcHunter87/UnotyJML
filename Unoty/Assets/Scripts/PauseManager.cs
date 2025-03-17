@@ -51,6 +51,13 @@ public class PauseManager : MonoBehaviour
         escalaOriginalPausa = Pausa.transform.localScale;
         Pausa.transform.localScale = Vector3.zero;
 
+        #if UNITY_ANDROID || UNITY_IOS
+
+            ((RectTransform)Pausa.transform).anchoredPosition = new Vector2(-312f, -13.3f);
+            ((RectTransform)Pausa.transform).sizeDelta = new Vector2(35.651f, 35.818f);
+            
+        #endif
+
         pauseMenu.SetActive(false);
         pauseBackground.SetActive(false);
         Continue.gameObject.SetActive(false);

@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     public int ultimaPosicion = -1;
 
+    public GameObject baseCardThrowVariables;
     public GameObject[] cardThrowVariables;
 
     private bool primeraVez = true;
@@ -62,6 +63,12 @@ public class GameManager : MonoBehaviour
         GuardarPosicionesBotonesColor();
         DesactivarBotonesColor();
 
+        #if UNITY_ANDROID || UNITY_IOS
+        
+        baseCardThrowVariables.transform.position = new Vector3(0f, -0.22f, 0f);
+        
+        #endif
+        
         if (whoText != null)
         {
             whoTextOriginalScale = whoText.transform.localScale;
