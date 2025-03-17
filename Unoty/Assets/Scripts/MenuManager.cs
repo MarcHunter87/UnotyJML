@@ -6,13 +6,15 @@ using System.Collections;
 
 public class MenuManager : MonoBehaviour
 {
-    public static bool esPrimerBoton = true;
+    public static bool esPrimerBoton;
     public Button Nueva;
     public Button Cargar;
     public Button Salir;
 
     void Start()
     {
+        esPrimerBoton = true;
+
         Nueva.onClick.AddListener(NuevaPartida);
         Cargar.onClick.AddListener(CargarPartida);
         Salir.onClick.AddListener(SalirJuego);

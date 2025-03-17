@@ -145,7 +145,6 @@ public class PauseManager : MonoBehaviour
     {
         if (animacionEnProgreso) return;
 
-        MenuManager.esPrimerBoton = true;
         ResetearAnimacionesBotones();
 
         isPaused = false;
@@ -216,6 +215,8 @@ public class PauseManager : MonoBehaviour
     public void PausarPartida()
     {
         if (animacionEnProgreso) return;
+
+        MenuManager.esPrimerBoton = true;
 
         botonSeleccionadoAntesDePausa = EventSystem.current.currentSelectedGameObject;
 
