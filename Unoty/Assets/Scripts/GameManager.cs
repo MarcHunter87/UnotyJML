@@ -215,7 +215,7 @@ public class GameManager : MonoBehaviour
     public void ActivarBotonesColor()
     {
         seleccionandoColor = true;
-        StartCoroutine(MostrarBotonesConAnimacion());
+        StartCoroutine(DelayMostrarBotones());
 
         foreach (GameObject boton in botonesSeleccionarColor)
         {
@@ -224,6 +224,12 @@ public class GameManager : MonoBehaviour
                 boton.AddComponent<ColorButtonSound>();
             }
         }
+    }
+
+    private IEnumerator DelayMostrarBotones()
+    {
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(MostrarBotonesConAnimacion());
     }
 
     public void DesactivarBotonesColor()

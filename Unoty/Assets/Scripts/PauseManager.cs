@@ -148,27 +148,25 @@ public class PauseManager : MonoBehaviour
         ResetearAnimacionesBotones();
 
         isPaused = false;
-        Time.timeScale = 1f;
         StartCoroutine(EfectoDesaparicionMenu());
     }
 
     public void PlayAgain()
     {
-        Time.timeScale = 1f;
         ENDdata.Instance.ResetearValores();
         StartCoroutine(CargarEscena("Juego"));
     }
 
     public void RegresoAlMenu()
     {
-        Time.timeScale = 1f;
         ENDdata.Instance.ResetearValores();
         StartCoroutine(CargarEscena("Menu Principal"));
     }
 
     private IEnumerator CargarEscena(string nombreEscena)
     {
-        yield return new WaitForSeconds(0.35f);
+        yield return new WaitForSecondsRealtime(0.35f);
+        Time.timeScale = 1f;
         SceneManager.LoadScene(nombreEscena);
     }
 
@@ -384,6 +382,8 @@ public class PauseManager : MonoBehaviour
         Color color = iconoPausaSpriteRenderer.color;
         color.a = 1f;
         iconoPausaSpriteRenderer.color = color;
+
+        Time.timeScale = 1f;
     }
 
     public void AbrirMenuPausaDesdeBoton()
